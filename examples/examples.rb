@@ -51,7 +51,7 @@ puts "cool! let's create a new card."
 card = Balanced::Card.new(
   :card_number => "5105105105105100",
   :expiration_month => "12",
-  :expiration_year => "2015",
+  :expiration_year => "2015"
 ).save
 puts "Our card uri: #{card.uri}"
 
@@ -88,7 +88,7 @@ puts "ok, we have a merchant that's signing up, let's create an account for them
 bank_account = Balanced::BankAccount.new(
     :account_number => "1234567890",
     :bank_code => "12",
-    :name => "Jack Q Merchant",
+    :name => "Jack Q Merchant"
 ).save
 
 merchant = marketplace.create_merchant(
@@ -103,7 +103,7 @@ merchant = marketplace.create_merchant(
       :phone_number => "+16505551234",
     },
     :bank_account_uri => bank_account.uri,
-    :name => "Jack Q Merchant",
+    :name => "Jack Q Merchant"
 )
 
 puts "oh our buyer is interested in buying something for 130.00$"

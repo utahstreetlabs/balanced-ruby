@@ -73,7 +73,7 @@ module Balanced
           :email_address => email_address,
           :bank_account_uri => bank_account_uri,
           :name => name,
-          :meta => meta,
+          :meta => meta
       }
 
       if merchant.respond_to? :keys

@@ -44,7 +44,7 @@ module Balanced
           :hold_uri => hold_uri,
           :meta => meta,
           :description => description,
-          :source_uri => source_uri,
+          :source_uri => source_uri
       )
       debit.save
     end
@@ -68,7 +68,7 @@ module Balanced
           :uri => self.holds_uri,
           :amount => amount,
           :meta => meta,
-          :source_uri => source_uri,
+          :source_uri => source_uri
       )
       hold.save
     end
@@ -92,7 +92,7 @@ module Balanced
         :amount => amount,
         :meta => meta,
         :description => description,
-        :destination_uri => destination_uri,
+        :destination_uri => destination_uri
       )
       credit.save
     end
