@@ -25,7 +25,7 @@ describe Balanced::Transaction do
     card = Balanced::Card.new(
       :card_number => "4111111111111111",
       :expiration_month => "1",
-      :expiration_year => "2015",
+      :expiration_year => "2015"
     ).save
     @merchant = @marketplace.create_merchant(
       :email_address => "merchant@example.org",

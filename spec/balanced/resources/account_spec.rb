@@ -64,8 +64,9 @@ describe Balanced::Account do
           :name => "Jack Q Merchant"
         ).save
       end
+      subject { @merchant }
       it do
-        -> do
+        lambda {
           @merchant = Balanced::Account.new(
             :uri => @marketplace.accounts_uri,
             :email_address => "merchant@example.org",
@@ -73,7 +74,7 @@ describe Balanced::Account do
             :bank_account_uri => @bank_account.uri,
             :name => "Jack Q Merchant"
           )
-        end.should_not raise_error
+        }.should_not raise_error
       end
     end
 
@@ -95,7 +96,11 @@ describe Balanced::Account do
             :name => "Jack Q Merchant"
           )
         end
-        it { -> { @merchant.save }.should_not raise_error }
+        it do
+          lambda {
+            @merchant.save
+          }.should_not raise_error
+        end
       end
 
       describe "after #save" do
@@ -199,7 +204,11 @@ describe Balanced::Account do
             :name => "Jack Q Merchant"
           ).save
         end
-        it { -> { @merchant.add_bank_account(@new_bank_account.uri) }.should_not raise_error }
+        it do
+          lambda {
+            @merchant.add_bank_account(@new_bank_account.uri)
+          }.should_not raise_error
+        end
       end
 
       describe "after executing" do
@@ -244,7 +253,7 @@ describe Balanced::Account do
           card = Balanced::Card.new(
             :card_number => "5105105105105100",
             :expiration_month => "12",
-            :expiration_year => "2015",
+            :expiration_year => "2015"
           ).save
           @buyer = Balanced::Account.new(
             :uri => @marketplace.accounts_uri,
@@ -253,7 +262,9 @@ describe Balanced::Account do
             :name => "Jack Q Buyer"
           )
         end
-        it { -> { @buyer.save }.should_not raise_error }
+        it do
+           lambda { @buyer.save }.should_not raise_error
+        end
       end
 
       describe "after #save" do
@@ -263,7 +274,7 @@ describe Balanced::Account do
             card = Balanced::Card.new(
               :card_number => "4111111111111111",
               :expiration_month => "12",
-              :expiration_year => "2015",
+              :expiration_year => "2015"
             ).save
             @buyer = Balanced::Account.new(
               :uri => @marketplace.accounts_uri,
@@ -351,12 +362,12 @@ describe Balanced::Account do
           card = Balanced::Card.new(
             :card_number => "4111111111111111",
             :expiration_month => "12",
-            :expiration_year => "2015",
+            :expiration_year => "2015"
           ).save
           @new_card = Balanced::Card.new(
             :card_number => "4111111111111111",
             :expiration_month => "1",
-            :expiration_year => "2015",
+            :expiration_year => "2015"
           ).save
           @buyer = Balanced::Account.new(
             :uri => @marketplace.accounts_uri,
@@ -366,7 +377,7 @@ describe Balanced::Account do
           ).save
         end
         it do
-          -> { @buyer.add_card(@new_card.uri) }.should_not raise_error
+          lambda { @buyer.add_card(@new_card.uri) }.should_not raise_error
         end
       end
       describe "after executing" do
@@ -376,12 +387,12 @@ describe Balanced::Account do
           card = Balanced::Card.new(
             :card_number => "4111111111111111",
             :expiration_month => "12",
-            :expiration_year => "2015",
+            :expiration_year => "2015"
           ).save
           @new_card = Balanced::Card.new(
             :card_number => "5105105105105100",
             :expiration_month => "1",
-            :expiration_year => "2017",
+            :expiration_year => "2017"
           ).save
           @buyer = Balanced::Account.new(
             :uri => @marketplace.accounts_uri,
@@ -415,7 +426,7 @@ describe Balanced::Account do
           card = Balanced::Card.new(
             :card_number => "4111111111111111",
             :expiration_month => "12",
-            :expiration_year => "2015",
+            :expiration_year => "2015"
           ).save
           @buyer = Balanced::Account.new(
             :uri => @marketplace.accounts_uri,
@@ -426,7 +437,7 @@ describe Balanced::Account do
         end
 
         it do
-          -> { @buyer.promote_to_merchant @merchant_attributes}.should_not raise_error
+          lambda { @buyer.promote_to_merchant @merchant_attributes}.should_not raise_error
         end
       end
       describe "after executing" do
@@ -445,7 +456,7 @@ describe Balanced::Account do
           card = Balanced::Card.new(
             :card_number => "4111111111111111",
             :expiration_month => "12",
-            :expiration_year => "2015",
+            :expiration_year => "2015"
           ).save
           @buyer = Balanced::Account.new(
             :uri => @marketplace.accounts_uri,
@@ -467,7 +478,7 @@ describe Balanced::Account do
         card = Balanced::Card.new(
           :card_number => "4111111111111111",
           :expiration_month => "12",
-          :expiration_year => "2015",
+          :expiration_year => "2015"
         ).save
         begin
           @buyer = Balanced::Account.new(
@@ -483,7 +494,7 @@ describe Balanced::Account do
       it "takes optional parameters"  do
         debit = @buyer.debit(
           :amount => 500,
-          :appears_on_statement_as => "BOBS BURGERS",
+          :appears_on_statement_as => "BOBS BURGERS"
         )
         debit.should be_instance_of Balanced::Debit
         debit.amount.should eql 500
@@ -509,7 +520,7 @@ describe Balanced::Account do
       card = Balanced::Card.new(
         :card_number => "5105105105105100",
         :expiration_month => "12",
-        :expiration_year => "2015",
+        :expiration_year => "2015"
       ).save
       Balanced::Marketplace.my_marketplace.create_buyer(
         "john.doe@example.com",
@@ -546,7 +557,7 @@ describe Balanced::Account do
       card = Balanced::Card.new(
         :card_number => "5105105105105100",
         :expiration_month => "12",
-        :expiration_year => "2015",
+        :expiration_year => "2015"
       ).save
       buyer = Balanced::Marketplace.my_marketplace.create_buyer(
         "john.doe@example.com",

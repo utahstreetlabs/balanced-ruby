@@ -24,7 +24,7 @@ describe Balanced::Marketplace do
         :phone_number => "+16505551234",
       },
       @bank_account.uri,
-      "Jack Q Merchant",
+      "Jack Q Merchant"
     )
   end
 
@@ -79,6 +79,7 @@ describe Balanced::Marketplace do
         subject { @merchant.debits_uri }
         it { should match DEBITS_URI_REGEX }
       end
+
       describe "#transactions_uri" do
         subject { @merchant.transactions_uri }
         it { should match TRANSACTIONS_URI_REGEX }

@@ -57,7 +57,7 @@ module Balanced
 
     def method_missing(method, *args, &block)
       case method
-      when :get, :post, :put, :delete
+        when :get, :post, :put, :delete
         conn.basic_auth(api_key, '') unless api_key.nil?
         conn.send method, *args
       else

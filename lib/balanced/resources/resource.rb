@@ -63,7 +63,7 @@ module Balanced
     end
 
     def method_missing(method, *args, &block)
-      case method
+      case method.to_s
         when /(.+)\=$/
           attr = method.to_s.chop
           @attributes[attr] = args[0]
@@ -71,6 +71,7 @@ module Balanced
           super
       end
     end
+
   def self.included(base)
     base.extend ClassMethods
   end
