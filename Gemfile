@@ -13,7 +13,6 @@ group :development do
 end
 
 group :test do
-  gem "json"
   gem "rspec", '~> 2.10'
   gem "rake", '~> 0.9.2'
   gem "vcr", '~> 2.2.0'
